@@ -8,11 +8,9 @@
 6. npm start
 
 
+// HELLO I ALSO ADDED THE BACKEND FEATURE FOR SIGNUP AND LOGIN USING PASSPORT 
 
-// HELLO SIR I ALSO ADDED THE BACKEND FEATURE FOR SIGNUP AND LOGIN USING PASSPORT BUT ITS UI IS NOT IMPLEMENTED 
-// IMPLEMENTED THE LOGIN THROUGH FM ACCOUNT 
-
-//WE CAN CHECK THE SIGNUP FEATURE USING POSTMAN 
+=========== WE CAN CHECK THE SIGNUP FEATURE USING POSTMAN =========================== 
 
  URL: http://localhost:3000/auth/signup
 
@@ -23,8 +21,9 @@ body
    "name" : "ajeet"
 }
 
+==========================================================================================
 
-// WE CAN CHECK LOGIN FEATURE USING POSTMAN
+============= WE CAN CHECK LOGIN FEATURE USING POSTMAN ======================================
 
 URL: http://localhost:3000/auth/login
 
@@ -34,3 +33,4 @@ body
    "password" : "ajeet@019",
    "name" : "ajeet"
 }
+=====================================================================
