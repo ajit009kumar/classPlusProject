@@ -5,7 +5,9 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import styled from 'styled-components'
 import {fetchBasicInfo} from '../actions/userActions'
-import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card'
+import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
+import CircularProgress from 'material-ui/CircularProgress'
+
 
 // import './../app.css';
 
@@ -306,13 +308,28 @@ class PersonalDetailsView extends React.Component {
       playcount,
       realname,
       playlists,
-      subscriber
+      subscriber,
+      isPersonalDetailsLoading
     } = this.props
     // console.log('===================>',age,country,name,playcount,realname,playlists,subscriber);
 
     return (
       <WrapperContainer>
-        <div class='card cardWidth'>
+
+        {(() => {
+            if(isPersonalDetailsLoading === undefined || isPersonalDetailsLoading === false ) {
+              return (
+              <CircularProgress
+                size={60}
+                thickness={5}
+                color='#323765'
+                style={{paddingLeft: '45%', paddingTop: '3%'}}
+              />
+            )
+            }
+            else{
+                return(
+                  <div class='card cardWidth'>
           <header class='card-header'>
             <p class='card-header-title textStyle'>
               Personal Details
@@ -366,6 +383,10 @@ class PersonalDetailsView extends React.Component {
           </div>
         </div>
 
+                )
+            }
+        })()}
+      
       </WrapperContainer>
     )
   }

@@ -16,7 +16,12 @@ const defaultState = {
   recentTracks:[],
   loveTracks:[],
   topTracks:[],
-  topArtists:[]
+  topArtists:[],
+  isRecentTracksLoading:false,
+  isPersonalDetailsLoading:false,
+  isTopTracksLoading:false,
+  isTopArtistLoading:false,
+  isLoveTracksLoading:false
 }
 
 export function userReducers (state = {players: []}, action) {
@@ -58,7 +63,13 @@ export function userReducers (state = {players: []}, action) {
         recentTracks:[],
         loveTracks:[],
         topTracks:[],
-        topArtists:[]
+        topArtists:[],
+        isRecentTracksLoading:false,
+        isPersonalDetailsLoading:true,
+        isTopTracksLoading:false,
+        isTopArtistLoading:false,
+        isLoveTracksLoading:false
+        
       }
     }
 
@@ -77,7 +88,13 @@ export function userReducers (state = {players: []}, action) {
         subscribe:undefined,
         loveTracks:[],
         topTracks:[],
-        topArtists:[]
+        topArtists:[],
+        isRecentTracksLoading:true,
+        isPersonalDetailsLoading:false,
+        isTopTracksLoading:false,
+        isTopArtistLoading:false,
+        isLoveTracksLoading:false
+        
       }
     }
 
@@ -97,6 +114,12 @@ export function userReducers (state = {players: []}, action) {
         playlists:undefined,
         realname:undefined,
         subscribe:undefined,
+        isRecentTracksLoading:false,
+        isPersonalDetailsLoading:false,
+        isTopTracksLoading:false,
+        isTopArtistLoading:false,
+        isLoveTracksLoading:true        
+        
       }
     }
 
@@ -116,6 +139,14 @@ export function userReducers (state = {players: []}, action) {
         playlists:undefined,
         realname:undefined,
         subscribe:undefined,
+        isRecentTracksLoading:false,
+        isPersonalDetailsLoading:false,
+        isTopTracksLoading:true,
+        isTopArtistLoading:false,
+        isLoveTracksLoading:false
+        
+        
+        
       }
     }
 
@@ -135,6 +166,12 @@ export function userReducers (state = {players: []}, action) {
         playlists:undefined,
         realname:undefined,
         subscribe:undefined,
+        isRecentTracksLoading:false,
+        isPersonalDetailsLoading:false,
+        isTopTracksLoading:false,
+        isTopArtistLoading:true,
+        isLoveTracksLoading:false
+        
       }
     }
 

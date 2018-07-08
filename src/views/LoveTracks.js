@@ -4,7 +4,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import styled from 'styled-components'
-import {fetchLoveTracks} from '../actions/userActions'
+import {fetchLoveTracks} from '../actions/userActions';
+import CircularProgress from 'material-ui/CircularProgress';
+
 // import './../app.css';
 
 const Wrapper = styled.div`
@@ -113,7 +115,7 @@ class LoveTracks extends React.Component {
 
   render () {
     // console.log('=============this is called===================>');
-    const {loveTracks} = this.props
+    const {loveTracks , isLoveTracksLoading } = this.props
     // const { userInfo }= this.props;
     // console.log('==========================================>',userInfo);
 
@@ -121,6 +123,18 @@ class LoveTracks extends React.Component {
       <WrapperContainer>
 
         {(() => {
+
+          if(isLoveTracksLoading === undefined || isLoveTracksLoading === false){
+            return (
+              <CircularProgress
+                size={60}
+                thickness={5}
+                color='#323765'
+                style={{paddingLeft: '45%', paddingTop: '3%'}}
+              />
+            )
+          }
+
           if (loveTracks && loveTracks.length !== 0) {
             return loveTracks.map(track => (
               <div

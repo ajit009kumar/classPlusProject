@@ -4,7 +4,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import styled from 'styled-components'
-import {fetchTopTopArtists} from '../actions/userActions'
+import {fetchTopTopArtists} from '../actions/userActions';
+import CircularProgress from 'material-ui/CircularProgress';
+
 // import './../app.css';
 
 const Wrapper = styled.div`
@@ -105,18 +107,30 @@ class TopArtists extends React.Component {
   }
 
   componentDidMount () {
-    const {fetchTopTopArtists} = this.props
+    const {fetchTopTopArtists , isTopArtistLoading } = this.props
     const userName = localStorage['userName']
     fetchTopTopArtists(userName)
     // console.log('userName=====================>',userName);
   }
 
   render () {
-    const {topArtists} = this.props
+    const {topArtists , isTopArtistLoading} = this.props
     return (
       <WrapperContainer>
 
         {(() => {
+
+           if( isTopArtistLoading === undefined || isTopArtistLoading === false ) {
+            return (
+              <CircularProgress
+                size={60}
+                thickness={5}
+                color='#323765'
+                style={{paddingLeft: '45%', paddingTop: '3%'}}
+              />
+            )
+           }
+
           if (topArtists && topArtists.length !== 0) {
             return topArtists.map(artist => (
               <div

@@ -4,7 +4,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import styled from 'styled-components'
-import {fetchTopTracks} from '../actions/userActions'
+import {fetchTopTracks} from '../actions/userActions';
+import CircularProgress from 'material-ui/CircularProgress'
+
 // import './../app.css';
 
 const Wrapper = styled.div`
@@ -125,17 +127,29 @@ class TopTracks extends React.Component {
   }
 
   componentDidMount () {
-    const {fetchTopTracks} = this.props
+    const {fetchTopTracks , isTopTracksLoading } = this.props
     const userName = localStorage['userName']
     fetchTopTracks(userName)
     // console.log('userName=====================>',userName);
   }
 
   render () {
-    const {topTracks} = this.props
+    const {topTracks,isTopTracksLoading} = this.props
     return (
       <WrapperContainer>
         {(() => {
+
+          if (isTopTracksLoading === undefined || isTopTracksLoading === false) {
+            return (
+              <CircularProgress
+                size={60}
+                thickness={5}
+                color='#323765'
+                style={{paddingLeft: '45%', paddingTop: '3%'}}
+              />
+            )
+          }
+
           if (topTracks && topTracks.length !== 0) {
             return topTracks.map(track => (
               <div

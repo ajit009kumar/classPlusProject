@@ -4,7 +4,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import styled from 'styled-components'
-import {fetchRecentlyPlayedTracks , changeStatus} from '../actions/userActions'
+import {fetchRecentlyPlayedTracks, changeStatus} from '../actions/userActions'
+import CircularProgress from 'material-ui/CircularProgress'
+
 // import './../app.css';
 
 const Wrapper = styled.div`
@@ -116,93 +118,109 @@ class RecentPlayedTracks extends React.Component {
     // console.log('userName=====================>',userName);
   }
 
-  changeLikedStatus = (trackName , userName) => {
-    const { changeStatus } = this.props;
-    changeStatus(trackName,userName);
-    console.log('=================================================>',trackName);
+  changeLikedStatus = (trackName, userName) => {
+    const {changeStatus} = this.props
+    changeStatus(trackName, userName)
+    console.log('=================================================>', trackName)
   }
 
   render () {
-    const {recentTracks} = this.props
+    const {recentTracks, isRecentTracksLoading} = this.props
     const username = localStorage['userName']
+    console.log('isRecentTracksLoading================>', isRecentTracksLoading)
 
     return (
       <WrapperContainer>
         {(() => {
-          if (recentTracks && recentTracks.length !== 0) {
-            return recentTracks.map(track => (
-              <div
-                class='card cardWidth'
-                style={{marginTop: '16', marginBottom: '16px'}}
-              >
-                <header class='card-header'>
-                  <p class='card-header-title textStyle'>
-                    Recent Tracks
-                    <div onClick={() => {
-                      this.changeLikedStatus(track.trackName,username);
-                    }}>
+          if (
+            isRecentTracksLoading === undefined ||
+            isRecentTracksLoading === false
+          ) {
+            return (
+              <CircularProgress
+                size={60}
+                thickness={5}
+                color='#323765'
+                style={{paddingLeft: '45%', paddingTop: '3%'}}
+              />
+            )
+          }
 
-                    {track.liked ?  <span
-                        class='icon has-text-danger'
-                        style={{marginLeft: '60%', marginTop: '20%'}}
+          if (recentTracks && recentTracks.length >= 0) {
+            if (recentTracks.length > 0) {
+              return recentTracks.map(track => (
+                <div
+                  class='card cardWidth'
+                  style={{marginTop: '16', marginBottom: '16px'}}
+                >
+                  <header class='card-header'>
+                    <p class='card-header-title textStyle'>
+                      Recent Tracks
+                      <div
+                        onClick={() => {
+                          this.changeLikedStatus(track.trackName, username)
+                        }}
                       >
-                        <i class='fas fa-heart' /> </span> : 
-                        
-                        <span
-                        class='icon has-text-grey'
-                        style={{marginLeft: '60%', marginTop: '20%'}}
-                      >
-                        <i class='fas fa-heart' />  </span> }
-                    
-                    </div>
-                  </p>
-                  <a
-                    href='#'
-                    class='card-header-icon'
-                    aria-label='more options'
-                  />
 
-                </header>
-                <div class='card-content'>
-                  <div class='content'>
-                    <div>
-                      <table>
-                        <tr>
-                          <td style={{width: 300}}>
-                            <TrackName trackName={track.trackName} />
-                          </td>
-                          <td style={{width: 300}}>
-                            <ArtistName artistName={track.artistName} />
-                          </td>
-                          <td style={{width: 300}}>
-                            <UrlName urlName={track.urlName} />
-                          </td>
-                        </tr>
-                      </table>
+                        {track.liked
+                          ? <span
+                            class='icon has-text-danger'
+                            style={{marginLeft: '60%', marginTop: '20%'}}
+                            >
+                            <i class='fas fa-heart' />{' '}
+                          </span>
+                          : <span
+                            class='icon has-text-grey'
+                            style={{marginLeft: '60%', marginTop: '20%'}}
+                            >
+                            <i class='fas fa-heart' />{' '}
+                          </span>}
+
+                      </div>
+                    </p>
+                    <a
+                      href='#'
+                      class='card-header-icon'
+                      aria-label='more options'
+                    />
+
+                  </header>
+                  <div class='card-content'>
+                    <div class='content'>
+                      <div>
+                        <table>
+                          <tr>
+                            <td style={{width: 300}}>
+                              <TrackName trackName={track.trackName} />
+                            </td>
+                            <td style={{width: 300}}>
+                              <ArtistName artistName={track.artistName} />
+                            </td>
+                            <td style={{width: 300}}>
+                              <UrlName urlName={track.urlName} />
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
-          }
-
-         else if (recentTracks && recentTracks.length === 0) {
-            return (
-              <div class='card-content'>
-                <div class='media'>
-                  <div class='media-left' />
+              ))
+            } else {
+              return (
+                <div class='card-content'>
+                  <div class='media'>
+                    <div class='media-left' />
+                  </div>
+                  <div class='content' style={{color: 'red'}}>
+                    Currently No Any Data Available In Recent Tracks
+                    <br />
+                    <time
+                    >{`${new Date().getDate()} - ${new Date().getMonth() + 1} - ${new Date().getFullYear()}`}</time>
+                  </div>
                 </div>
-                <div class='content' style={{color: 'red'}}>
-                  Currently No Any Data Available In Recent Tracks
-                  <br />
-                  <time
-                  >{`${new Date().getDate()} - ${new Date().getMonth() + 1} - ${new Date().getFullYear()}`}</time>
-                </div>
-              </div>
-            )
-          }
-          else{
-            return ( <div />);
+              )
+            }
           }
         })()}
 
@@ -217,8 +235,8 @@ const mapDispatchToProps = dispatch => ({
   fetchRecentlyPlayedTracks: userName => {
     dispatch(fetchRecentlyPlayedTracks(userName))
   },
-  changeStatus: (trackName,userName) => {
-    dispatch(changeStatus(trackName,userName));
+  changeStatus: (trackName, userName) => {
+    dispatch(changeStatus(trackName, userName))
   }
 })
 
