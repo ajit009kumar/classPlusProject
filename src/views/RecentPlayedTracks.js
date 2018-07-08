@@ -115,20 +115,17 @@ class RecentPlayedTracks extends React.Component {
     const {fetchRecentlyPlayedTracks} = this.props
     const userName = localStorage['userName']
     fetchRecentlyPlayedTracks(userName)
-    // console.log('userName=====================>',userName);
   }
 
   changeLikedStatus = (trackName, userName) => {
     const {changeStatus} = this.props
     changeStatus(trackName, userName)
-    console.log('=================================================>', trackName)
   }
 
   render () {
     const {recentTracks, isRecentTracksLoading} = this.props
     const username = localStorage['userName']
-    console.log('isRecentTracksLoading================>', isRecentTracksLoading)
-
+  
     return (
       <WrapperContainer>
         {(() => {

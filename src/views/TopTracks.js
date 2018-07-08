@@ -130,7 +130,6 @@ class TopTracks extends React.Component {
     const {fetchTopTracks , isTopTracksLoading } = this.props
     const userName = localStorage['userName']
     fetchTopTracks(userName)
-    // console.log('userName=====================>',userName);
   }
 
   render () {

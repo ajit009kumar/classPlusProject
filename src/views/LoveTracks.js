@@ -110,15 +110,10 @@ class LoveTracks extends React.Component {
     const {fetchLoveTracks} = this.props
     const userName = localStorage['userName']
     fetchLoveTracks(userName)
-    // console.log('userName=====================>',userName);
   }
 
   render () {
-    // console.log('=============this is called===================>');
-    const {loveTracks , isLoveTracksLoading } = this.props
-    // const { userInfo }= this.props;
-    // console.log('==========================================>',userInfo);
-
+    const {loveTracks , isLoveTracksLoading } = this.props;
     return (
       <WrapperContainer>
 

@@ -25,12 +25,8 @@ class Home extends React.Component {
     super(props)
   }
 
-  onSubmit = () => {
-    console.log('------------------------------------>')
-  }
-
+  
   render () {
-    console.log('______________________________________________________________');
     return (
       <div>
         <div className='top-bar'>

@@ -28,16 +28,12 @@ import Profile from './components/Profile';
 import Home from './components/Home';
 import Login from './components/Login';
 
-const middleware = applyMiddleware(thunk, logger)
+const middleware = applyMiddleware(thunk)
 const store = createStore(reducers, middleware)
 
 
 injectTapEventPlugin();
 
-// const store = this.configureStore();
-// const configureStore = () => {
-//   console.log('hello==================>')
-// }
 
 const styles = {
   title: {
@@ -104,7 +100,6 @@ class App extends Component {
 
     render() {
       const { authenticated } = this.state;
-      // console.log('======authenticarted=================>',authenticated);
       return (
         <Provider store={store}>
         <MuiThemeProvider muiTheme={getMuiTheme()}>

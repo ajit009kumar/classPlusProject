@@ -295,11 +295,9 @@ class PersonalDetailsView extends React.Component {
     const {fetchBasicInfo} = this.props
     const userName = localStorage['userName']
     fetchBasicInfo(userName)
-    // console.log('userName=====================>',userName);
   }
 
   render () {
-    // console.log('=============this is called===================>');
     const {lovedTracks} = this.state
     const {
       age,
@@ -311,8 +309,7 @@ class PersonalDetailsView extends React.Component {
       subscriber,
       isPersonalDetailsLoading
     } = this.props
-    // console.log('===================>',age,country,name,playcount,realname,playlists,subscriber);
-
+  
     return (
       <WrapperContainer>
 

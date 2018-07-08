@@ -31,13 +31,9 @@ class Login extends React.Component {
   componentWillReceiveProps(previousprops) {
     const { userInfo } = previousprops;
     const {history , toggleAuthenticateStatus } = this.props;
-    // console.log('===========================>',toggleAuthenticateStatus);
     if( userInfo && userInfo.token){
-      console.log('userInfo===============>',userInfo);
       Auth.authenticateUser(userInfo.token);
       Auth.addUserName(userInfo.user.name);
-      // toggleAuthenticateStatus();     
-      // console.log('============================>') 
       if(Auth.isUserAuthenticated()){
         history.push('/profile');
       }
@@ -49,13 +45,8 @@ class Login extends React.Component {
   }
 
 
-  // onSubmit = () => {
-  //   console.log('------------------------------------>')
-  // }
-
   render () {
     const { update , login ,username,history , userInfo }= this.props;
-    console.log('message====================>',userInfo);
     return (
       <div>
         <div className='top-bar'>
@@ -67,7 +58,6 @@ class Login extends React.Component {
                 onSubmit={(event) => {
                     event.preventDefault();
                     login(username);
-                    // history.push('/profile');
                   }}
                >
               <h2 className='card-heading'>Login With Fm Account</h2>

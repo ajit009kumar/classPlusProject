@@ -110,7 +110,6 @@ class TopArtists extends React.Component {
     const {fetchTopTopArtists , isTopArtistLoading } = this.props
     const userName = localStorage['userName']
     fetchTopTopArtists(userName)
-    // console.log('userName=====================>',userName);
   }
 
   render () {
