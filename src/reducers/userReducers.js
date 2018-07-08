@@ -1,6 +1,6 @@
 'use strict'
-import uniq from 'lodash/uniq'
-import _ from 'lodash'
+// import uniq from 'lodash/uniq'
+// import _ from 'lodash'
 
 const defaultState = {
   filters: [],

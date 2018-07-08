@@ -91,11 +91,15 @@ export function loginUser(username){
   }
 
   
-  export function changeStatus(trackName) {
-    console.log('===============================>',trackName);
+  export function changeStatus(trackName,userName) {
+    console.log(trackName,userName);
     return function (dispatch) {
-      axios.put('/changeLikedStatus',{trackName:trackName}).then(function(response){
-          console.log('response=============================>',response);
+      axios.put('auth/changeLikedStatus/',{trackName,userName}).then(function(response){
+        console.log('============================>',response.data);
+        dispatch({
+          type:'FETCH_RECENT_TRACKS',
+          data:response.data
+        })
       })
     }
   }

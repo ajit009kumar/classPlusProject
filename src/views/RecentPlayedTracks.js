@@ -116,9 +116,9 @@ class RecentPlayedTracks extends React.Component {
     // console.log('userName=====================>',userName);
   }
 
-  changeLikedStatus = (trackName) => {
+  changeLikedStatus = (trackName , userName) => {
     const { changeStatus } = this.props;
-    changeStatus(trackName);
+    changeStatus(trackName,userName);
     console.log('=================================================>',trackName);
   }
 
@@ -139,14 +139,21 @@ class RecentPlayedTracks extends React.Component {
                   <p class='card-header-title textStyle'>
                     Recent Tracks
                     <div onClick={() => {
-                      this.changeLikedStatus(track.name);
+                      this.changeLikedStatus(track.trackName,username);
                     }}>
-                      <span
+
+                    {track.liked ?  <span
+                        class='icon has-text-danger'
+                        style={{marginLeft: '60%', marginTop: '20%'}}
+                      >
+                        <i class='fas fa-heart' /> </span> : 
+                        
+                        <span
                         class='icon has-text-grey'
                         style={{marginLeft: '60%', marginTop: '20%'}}
                       >
-                        <i class='fas fa-heart' />
-                      </span>
+                        <i class='fas fa-heart' />  </span> }
+                    
                     </div>
                   </p>
                   <a
@@ -162,13 +169,13 @@ class RecentPlayedTracks extends React.Component {
                       <table>
                         <tr>
                           <td style={{width: 300}}>
-                            <TrackName trackName={track.name} />
+                            <TrackName trackName={track.trackName} />
                           </td>
                           <td style={{width: 300}}>
-                            <ArtistName artistName={track.artist['#text']} />
+                            <ArtistName artistName={track.artistName} />
                           </td>
                           <td style={{width: 300}}>
-                            <UrlName urlName={track.url} />
+                            <UrlName urlName={track.urlName} />
                           </td>
                         </tr>
                       </table>
@@ -210,8 +217,8 @@ const mapDispatchToProps = dispatch => ({
   fetchRecentlyPlayedTracks: userName => {
     dispatch(fetchRecentlyPlayedTracks(userName))
   },
-  changeStatus: (trackName) => {
-    dispatch(changeStatus(trackName));
+  changeStatus: (trackName,userName) => {
+    dispatch(changeStatus(trackName,userName));
   }
 })
 

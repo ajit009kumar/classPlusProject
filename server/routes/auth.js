@@ -323,9 +323,21 @@ router.get('/recentTracks', async (req, res, next) => {
         })
       )
 
+      // const recentTracks = await Promise.all(
+      //     response.data.recenttracks.track.map(async track => {
+      //        const foundTracks = await RecentTracks.findOne({$and: [{trackName: track.name}, {userName: req.query.userName}]});
+      //        const likedStatus = foundTracks.liked;
+      //        track.liked = likedStatus;
+      //        return track;
+      //     })
+      // );
+
+      const recentTracks = await RecentTracks.find({userName:req.query.userName});
+
+    
       return res.json({
         success: true,
-        recentTracks: response.data.recenttracks.track
+        recentTracks: recentTracks
       })
     })
 })
@@ -447,10 +459,21 @@ router.get('/topArtists', async (req, res, next) => {
         topArtists: response.data.topartists.artist
       })
     })
-})
+});
 
-router.put('/changeLikedStatus',(req,res,next) => {
-  console.log('===================>',req.query);
+router.put('/changeLikedStatus/',async(req,res,next) => {
+
+  const recentTracks = await RecentTracks.findOne({$and:[{trackName:req.body.trackName},{userName: req.body.userName}]});
+
+  const likedStatus = !(recentTracks.liked);
+  await RecentTracks.update({$and:[{trackName:req.body.trackName},{userName: req.body.userName}]},{$set:{'liked':likedStatus}});
+  const recentAvailableTracks = await RecentTracks.find({userName: req.body.userName});
+
+  return res.json({
+    success: true,
+    recentTracks: recentAvailableTracks
+  });
+
 })
 
 module.exports = router

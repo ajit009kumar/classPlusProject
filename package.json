@@ -1,9 +1,10 @@
 {
-  "name": "sapientassignment",
+  "name": "ClassPlusProject",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node  ./node_modules/nodemon/bin/nodemon.js"
   },
   "keywords": [],
   "author": "",
@@ -24,11 +25,11 @@
     "bulma": "^0.7.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
-    "jsonwebtoken": "^7.4.1",
-    "lodash": "^4.17.10",
+    "jsonwebtoken": "^8.3.0",
     "material-ui": "^0.20.0",
     "mongoosastic": "^4.4.1",
     "mongoose": "^4.10.4",
+    "nodemon": "^1.17.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.3.2",
