@@ -1,0 +1,7 @@
+{
+    "dbUri": "mongodb://localhost/classplus",
+    "jwtSecret": "a secret phrase!!",
+    "fmAuthKey":"a3c268ff70c070c88cfe22289836d283",
+    "fmUrl":"http://ws.audioscrobbler.com/2.0/"
+  }
+  
