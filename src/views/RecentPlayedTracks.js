@@ -157,6 +157,7 @@ class RecentPlayedTracks extends React.Component {
                         onClick={() => {
                           this.changeLikedStatus(track.trackName, username)
                         }}
+                        className = "pointer"
                       >
 
                         {track.liked
