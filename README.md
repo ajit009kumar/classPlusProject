@@ -2,10 +2,10 @@
 
 1. Clone the Project
 2. Go To Project Directory
-3. npm install
+3. npm install to install all the npm dependencies
 4. start mongoDB
-5. start webpack
-6. npm start
+5. start webpack by running webpack
+6. start the server by running  npm start
 
 
 // HELLO I ALSO ADDED THE BACKEND FEATURE FOR SIGNUP AND LOGIN USING PASSPORT 
@@ -21,8 +21,6 @@ body
    "name" : "ajeet"
 }
 
-==========================================================================================
-
 ============= WE CAN CHECK LOGIN FEATURE USING POSTMAN ======================================
 
 URL: http://localhost:3000/auth/login
@@ -33,4 +31,3 @@ body
    "password" : "ajeet@019",
    "name" : "ajeet"
 }
-=====================================================================
