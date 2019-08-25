@@ -14,13 +14,6 @@
 
  URL: http://localhost:3000/auth/signup
 
-body 
-{
-   "email" : "ajeet093kumar@gmail.com",
-   "password" : "ajeet@019",
-   "name" : "ajeet"
-}
-
 ============= WE CAN CHECK LOGIN FEATURE USING POSTMAN ======================================
 
 URL: http://localhost:3000/auth/login
